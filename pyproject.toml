@@ -1,0 +1,41 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+    "setuptools>=64.0.0",
+    "wheel>=0.40.0",
+]
+
+[project]
+name = "intervention-generalization"
+version = "0.0.1"
+description = "This package provides experiments on intervention generalization in causal models."
+authors = [
+    { name="Armin Kekic", email="armin.kekic@mailbox.org" }
+]
+license = { text = "MIT" }
+dynamic = ["readme"]
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "jupyter",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[project.scripts]
+ig_main = "intervention_generalization.__main__:main"
+data_ratio_exp = "intervention_generalization.data_ratio_experiment:main"
+convergence_exp = "intervention_generalization.convergence_experiment:main"
+
+[tool.setuptools]
+packages = ["intervention_generalization"]
+
+[tool.setuptools.dynamic]
+version = {attr = "my_package.VERSION"}
+readme = {file = ["README.md"]}
