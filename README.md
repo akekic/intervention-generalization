@@ -152,6 +152,7 @@ $$
 $$
 \hat f(a_1, \ldots, a_K, R_1 = 1, \ldots, R_K = 1) = \mathbb{E}[Y | \mathrm{do}(a_1, \ldots, a_K)] \,.
 $$
+
 This is the target we want to estimate.
 
 ## Code Example
