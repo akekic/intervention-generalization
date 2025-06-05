@@ -136,16 +136,19 @@ $$
 which represents the different interventional regimes.
 
 **Observational regime**, where all $R_k = 0$:
+
 $$
 \hat f(a_1, \ldots, a_K, R_1 = 0, \ldots, R_K = 0) = \mathbb{E}[Y | a_1, \ldots, a_K] \,.
 $$
 
 **Single interventional regime**, where $R_j = 1$ and all others are $0$:
+
 $$
 \hat f(a_1, \ldots, a_K, R_1 = 0, \ldots, R_j = 1, \ldots, R_K = 0) = \mathbb{E}[Y | a_1, \ldots, \mathrm{do}(a_j), \ldots, a_K] \,.
 $$
 
 **Joint interventional regime**, where all $R_k = 1$:
+
 $$
 \hat f(a_1, \ldots, a_K, R_1 = 1, \ldots, R_K = 1) = \mathbb{E}[Y | \mathrm{do}(a_1, \ldots, a_K)] \,.
 $$
