@@ -110,36 +110,46 @@ convergence_exp --N_total "1000,10000,100000,1000000" --K 4
 ### Problem Setup
 
 Consider:
-- **Action variables**: A₁, ..., Aₖ (treatments/interventions)
-- **Outcome variable**: Y
-- **Unobserved confounders**: C₁, ..., Cₖ
+- **Action variables**: $A_1, ..., A_K$ (treatments/interventions)
+- **Outcome variable**: $Y$
+- **Unobserved confounders**: $C_1, ..., C_K$
 
-**Goal**: Estimate E[Y | do(a₁, ..., aₖ)] using only:
-- Observational data: (A, Y) ~ P(A, Y)
-- Single interventions: (A, Y) ~ P^(do(Aⱼ))(A, Y) for j = 1, ..., K
+**Goal**: Estimate $\mathbb{E}[Y | \mathrm{do}(a_1, ..., a_K)]$ using only:
+- Observational data: $(\mathbf{A}, Y) \sim \mathrm{P}_{(\mathbf{A}, Y)}^\mathcal{M}$
+- Single interventions: $(\mathbf{A}, Y) \sim \mathrm{P}_{(\mathbf{A}, Y)}^\mathcal{M(\mathrm{do}(A_j))}$ for $j = 1, \ldots, K$
 
 ### Key Assumption: Additive Outcome Mechanism
 
-```
-Y := Σₖ fₖ(Aₖ, Cₖ) + U
-```
+$$
+Y := \sum_k f_k(A_k, C_k) + U
+$$
 
-Where fₖ are arbitrary nonlinear functions and U is exogenous noise.
+Where $f_k$ are arbitrary nonlinear functions and $U$ is exogenous noise.
 
 ### Our Estimator
 
-We learn K estimator functions f̂ₖ(a₁, ..., aₖ, Rₖ) where Rₖ ∈ {0,1} indicates intervention status:
+We learn $K$ estimator functions $\hat f_k(a_1, ..., a_K, R_k)$ where $R_k \in \{0,1\}$ indicates whether action $A_k$ is intervened on.
+The overall estimator is:
+$$
+\hat f(a_1, \ldots, a_K, R_1, \ldots, R_K ) = \sum_{k=1}^K \hat f_k(a_1, \ldots, a_K, R_k)
+$$
+which represents the different interventional regimes.
 
-```python
-# Observational regime: all Rₖ = 0
-f̂(a, R=[0,0,0,0,0]) = E[Y | a₁, ..., a₅]
+**Observational regime**, where all $R_k = 0$:
+$$
+\hat f(a_1, \ldots, a_K, R_1 = 0, \ldots, R_K = 0) = \mathbb{E}[Y | a_1, \ldots, a_K] \,.
+$$
 
-# Single intervention: Rⱼ = 1, others = 0  
-f̂(a, R=[0,1,0,0,0]) = E[Y | a₁, do(a₂), a₃, a₄, a₅]
+**Single interventional regime**, where $R_j = 1$ and all others are $0$:
+$$
+\hat f(a_1, \ldots, a_K, R_1 = 0, \ldots, R_j = 1, \ldots, R_K = 0) = \mathbb{E}[Y | a_1, \ldots, \mathrm{do}(a_j), \ldots, a_K] \,.
+$$
 
-# Joint intervention: all Rₖ = 1
-f̂(a, R=[1,1,1,1,1]) = E[Y | do(a₁, ..., a₅)]  # Our target!
-```
+**Joint interventional regime**, where all $R_k = 1$:
+$$
+\hat f(a_1, \ldots, a_K, R_1 = 1, \ldots, R_K = 1) = \mathbb{E}[Y | \mathrm{do}(a_1, \ldots, a_K)] \,.
+$$
+This is the target we want to estimate.
 
 ## Code Example
 
