@@ -1,9 +1,9 @@
 # Learning Joint Interventional Effects from Single-Variable Interventions in Additive Models
 
+[![arXiv](https://img.shields.io/badge/arXiv-2506.04945-00ff00.svg)](https://arxiv.org/abs/2506.04945)
 [![license: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PyTorch](https://img.shields.io/badge/-PyTorch-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
-[![Lightning](https://img.shields.io/badge/-Lightning-792ee5?logo=lightning&logoColor=white)](https://lightning.ai/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 
 ![Intervention Generalization Problem](intervention_generalization/images/overview_figure.png)
 
